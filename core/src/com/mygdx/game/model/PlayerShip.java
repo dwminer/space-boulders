@@ -16,6 +16,8 @@ public class PlayerShip extends Rectangle //But the ship is a triangle??? Rectan
 		super();
 		this.x = x;
 		this.y = y;
+		this.setWidth(10); //Not proper size, hitboxes aren't quite right. (Probably not centered.)
+		this.setHeight(20);
 		this.direction = (float) (Math.PI/2.0);
 	}
 	
@@ -53,7 +55,7 @@ public class PlayerShip extends Rectangle //But the ship is a triangle??? Rectan
 	
 	public Projectile fire()
 	{
-		return new Projectile(x, y, direction, xspeed, yspeed);
+		return new Projectile(x, y, direction);
 	}
 	
 	public float getDirection()

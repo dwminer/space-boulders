@@ -7,15 +7,15 @@ public class Projectile extends Circle
 	
 	private float direction, xspeed, yspeed;
 
-	public Projectile(float x, float y, float direction, float xspeed, float yspeed)
+	public Projectile(float x, float y, float direction)
 	{
 		super();
 		this.setX(x);
 		this.setY(y);
-		this.setRadius(1);
+		this.setRadius(2);
 		this.direction = direction;
-		this.xspeed = (float) (xspeed + 200 * Math.cos(direction));
-		this.yspeed = (float) (yspeed + 200 * Math.sin(direction));
+		this.xspeed = (float) (10 * Math.cos(direction));
+		this.yspeed = (float) (10 * Math.sin(direction));
 	}
 	
 	public void update(float time)

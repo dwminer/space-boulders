@@ -24,11 +24,11 @@ public class Asteroid extends Circle
 	
 	public Asteroid(AsteroidType type, float x, float y)
 	{
-		super();
+		//super();
 		//I wonder if there's a better way to do this...
 		this.x = x;
 		this.y = y;
-		this.radius = type.diameter * 2;
+		this.radius = type.diameter / 2;
 		this.speed = type.speed;
 		this.splitType = type.splitType;
 		this.splitNum = type.splitNum;
