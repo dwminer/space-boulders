@@ -2,11 +2,15 @@ package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.SpaceBouldersGame;
 
-public class DesktopLauncher {
+public class DesktopLauncher
+{
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MyGdxGame(), config);
+		config.title = "Space Boulders (Atari no suerino pasterino pls)";
+		config.width = 800;
+		config.height = 600;
+		new LwjglApplication(new SpaceBouldersGame(), config);
 	}
 }
