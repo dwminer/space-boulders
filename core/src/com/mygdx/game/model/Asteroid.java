@@ -17,32 +17,37 @@ import com.badlogic.gdx.math.Circle;
 public class Asteroid extends Circle 
 {
 	private AsteroidType splitType;
-	private int /*x, y,*//*Don't want to override scope*/ diameter, speed, splitNum;
+	private int speed, splitNum;
 	private double direction;
 	static Random generator = new Random();
 	private Texture spriteImage;
 	
-	public Asteroid(AsteroidType type, int x, int y)
+	public Asteroid(AsteroidType type, float x, float y)
 	{
+		super();
 		//I wonder if there's a better way to do this...
-		this.x = (float)x;
-		this.y = (float)y;
-		this.diameter = type.diameter;
+		this.x = x;
+		this.y = y;
+		this.radius = type.diameter * 2;
 		this.speed = type.speed;
 		this.splitType = type.splitType;
 		this.splitNum = type.splitNum;
-		this.direction = generator.nextDouble() * 2 * Math.PI;
+		this.direction = generator.nextDouble() * 2.0 * Math.PI;
 		this.spriteImage = type.spriteImage;
 	}
 	
-	public void update()
+	/**
+	 * 
+	 * @param time - in seconds
+	 */
+	public void update(float time)
 	{
-		x += speed * Math.cos(direction);
-		y += speed * Math.sin(direction);
-		if (true) //outside bounding box
-		{
-			//wrap around
-		}
+		x += speed * time * Math.cos(direction);
+		y += speed * time * Math.sin(direction);
+		x %= 800;
+		y %= 600;
+		if (x < 0) x += 800;
+		if (y < 0) y += 600;
 	}
 	
 	public List<Asteroid> destroy()
@@ -52,7 +57,7 @@ public class Asteroid extends Circle
 			LinkedList<Asteroid> toReturn = new LinkedList<Asteroid>();
 			for (int i = 0; i < this.splitNum; i++)
 			{
-				toReturn.add(new Asteroid(this.splitType, (int)x, (int)y));
+				toReturn.add(new Asteroid(this.splitType, x, y));
 			}
 			
 			return toReturn;
@@ -60,13 +65,8 @@ public class Asteroid extends Circle
 		else return null;
 	}
 	
-	public int getX()
+	public Texture getTexture()
 	{
-		return (int)x;
-	}
-	
-	public int getY()
-	{
-		return (int)y;
+		return spriteImage;
 	}
 }
